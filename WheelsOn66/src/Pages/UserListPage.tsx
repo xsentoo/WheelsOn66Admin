@@ -14,19 +14,19 @@ export default function UserListPage({ token }: { token: string }) {
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
-    axios.get('/api/admin/users', { headers: { Authorization: `Bearer ${token}` } })
+    axios.get('http://localhost:5001/api/admin/users', { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setUsers(res.data));
   }, [token, refresh]);
 
   const handleDelete = async (id: string) => {
     if (window.confirm('Supprimer cet utilisateur ?')) {
-      await axios.delete(`/api/admin/users/${id}`, { headers: { Authorization: `Bearer ${token}` } });
+      await axios.delete(`http://localhost:5001/api/admin/users/${id}`, { headers: { Authorization: `Bearer ${token}` } });
       setRefresh(r => !r);
     }
   };
 
   const handleBlock = async (id: string, block: boolean) => {
-    await axios.put(`/api/admin/users/${id}/block`, { block }, { headers: { Authorization: `Bearer ${token}` } });
+    await axios.put(`http://localhost:5001/api/admin/users/${id}/block`, { block }, { headers: { Authorization: `Bearer ${token}` } });
     setRefresh(r => !r);
   };
 

@@ -12,7 +12,7 @@ export default function TripListPage({ token }: { token: string }) {
   const [trips, setTrips] = useState<Trip[]>([]);
 
   useEffect(() => {
-    axios.get('/api/admin/trips', { headers: { Authorization: `Bearer ${token}` } })
+    axios.get('http://localhost:5001/api/admin/trips', { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setTrips(res.data));
   }, [token]);
 

@@ -10,7 +10,7 @@ export default function LoginPage({ onLogin }: { onLogin: (token: string) => voi
     e.preventDefault();
     setError('');
     try {
-      const res = await axios.post('/api/auth/login', { email, password });
+      const res = await axios.post('http://localhost:5001/api/auth/login', { email, password });
       if (res.data.user.isAdmin) {
         onLogin(res.data.token);
       } else {
